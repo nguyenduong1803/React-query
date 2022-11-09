@@ -6,6 +6,7 @@ import UseQueryReact from "./components/useQueryReact/UseQueryReact";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import LoadMoreData from "./components/LoadMoreData/LoadMoreData";
+import KeepPreviousData from "./components/KeepPreviousData/KeepPreviousData";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/load" element={<Layout><LoadMoreData /></Layout>} />
+          </Routes>
+          <Routes>
+            <Route path="/prevData" element={<Layout><KeepPreviousData /></Layout>} />
           </Routes>
         </Router>
     </div>

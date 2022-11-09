@@ -19,4 +19,8 @@ const getCmtByID = async ({ pageParam = 1 }) => {
   const res = await axios.get(`${api}/${pageParam}`);
   return res.data;
 };
-export { getAll, getPhoto, getPhotos, getCmtByID };
+const getOne= async (id) => {
+    const res = await axios.get(`${api}/${id}`);
+    return res.data;
+  };
+export { getAll, getPhoto, getPhotos, getCmtByID,getOne };

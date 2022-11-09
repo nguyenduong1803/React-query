@@ -19,7 +19,7 @@ function LoadMoreData() {
 function UseQueryReact() {
   const [img, setImg] = React.useState([]);
   const [page, setPage] = React.useState(1);
-  const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
+  const { isLoading, error, data, fetchNextPage ,isFetchingNextPage,hasNextPage} = useInfiniteQuery(
     ["reposData", page],
     getCmtByID,
     {
@@ -35,13 +35,12 @@ function UseQueryReact() {
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: {error.message};</p>;
   console.log(data);
-  const handleLoad = () => {};
   return (
     <div>
       {data.pages.map((img) => {
         return <h2>{img.name}</h2>;
       })}
-      <button onClick={() => fetchNextPage()}>Load More..</button>
+      <button disabled={isFetchingNextPage||!hasNextPage} onClick={() => fetchNextPage()}>Load More..</button>
     </div>
   );
 }

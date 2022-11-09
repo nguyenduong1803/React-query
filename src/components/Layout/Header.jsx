@@ -8,6 +8,7 @@ function Header() {
    <p>   <Link to="/form">form</Link></p>
       <p><Link to="/image">Lazy image</Link></p>
       <p><Link to="/load">Load more</Link></p>
+      <p><Link to="/prevData">Previous Data</Link></p>
     </div>
   );
 }
