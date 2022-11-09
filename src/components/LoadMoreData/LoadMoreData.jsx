@@ -5,6 +5,7 @@ import {
   QueryClientProvider,
   useInfiniteQuery,
   useQuery,
+  useQueryClient,
 } from "react-query";
 function LoadMoreData() {
   const queryClient = new QueryClient();
@@ -37,12 +38,21 @@ function UseQueryReact() {
   console.log(data);
   return (
     <div>
-      {data.pages.map((img) => {
-        return <h2>{img.name}</h2>;
+        <GetData/>
+      {data.pages.map((cmt) => {
+        return <h2 key={cmt.id}>{cmt.name}</h2>;
       })}
       <button disabled={isFetchingNextPage||!hasNextPage} onClick={() => fetchNextPage()}>Load More..</button>
     </div>
   );
 }
-
+// getdata in children component
+const GetData = ()=>{
+    const queryClient = useQueryClient();
+    const data = queryClient.getQueryData();
+    console.log(data.pages)
+    return (
+        <div>data</div>
+    )
+}
 export default LoadMoreData;
