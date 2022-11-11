@@ -6,6 +6,8 @@ import UseQueryReact from "./components/useQueryReact/UseQueryReact";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import LoadMoreData from "./components/LoadMoreData/LoadMoreData";
+import KeepPreviousData from "./components/KeepPreviousData/KeepPreviousData";
+import ReactWindow from "./components/ReactWindow/ReactViturlized";
 function App() {
   return (
     <div className="App">
@@ -26,6 +28,12 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/load" element={<Layout><LoadMoreData /></Layout>} />
+          </Routes>
+          <Routes>
+            <Route path="/prevData" element={<Layout><KeepPreviousData /></Layout>} />
+          </Routes>
+          <Routes>
+            <Route path="/reactViturlized" element={<Layout><ReactWindow /></Layout>} />
           </Routes>
         </Router>
     </div>

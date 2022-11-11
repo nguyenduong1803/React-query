@@ -5,6 +5,7 @@ import {
   QueryClientProvider,
   useInfiniteQuery,
   useQuery,
+  useQueryClient,
 } from "react-query";
 function LoadMoreData() {
   const queryClient = new QueryClient();
@@ -19,7 +20,7 @@ function LoadMoreData() {
 function UseQueryReact() {
   const [img, setImg] = React.useState([]);
   const [page, setPage] = React.useState(1);
-  const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
+  const { isLoading, error, data, fetchNextPage ,isFetchingNextPage,hasNextPage} = useInfiniteQuery(
     ["reposData", page],
     getCmtByID,
     {
@@ -35,15 +36,23 @@ function UseQueryReact() {
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: {error.message};</p>;
   console.log(data);
-  const handleLoad = () => {};
   return (
     <div>
-      {data.pages.map((img) => {
-        return <h2>{img.name}</h2>;
+        <GetData/>
+      {data.pages.map((cmt) => {
+        return <h2 key={cmt.id}>{cmt.name}</h2>;
       })}
-      <button onClick={() => fetchNextPage()}>Load More..</button>
+      <button disabled={isFetchingNextPage||!hasNextPage} onClick={() => fetchNextPage()}>Load More..</button>
     </div>
   );
 }
-
+// getdata in children component
+const GetData = ()=>{
+    const queryClient = useQueryClient();
+    const data = queryClient.getQueryData();
+    console.log(data.pages)
+    return (
+        <div>data</div>
+    )
+}
 export default LoadMoreData;

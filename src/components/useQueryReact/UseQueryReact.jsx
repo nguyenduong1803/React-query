@@ -17,12 +17,12 @@ function UseQueryReact() {
   // query when count ===3
   const isQuery=count===3
   const { isLoading, error, data } = useQuery("repoData", () => getPhotos(), {
-    staleTime: 10000,enabled:isQuery
+    staleTime: 10000
+    // ,enabled:isQuery
   });
 
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: {error.message};</p>;
-  console.log("render");
   console.log(data);
   return (
     <div>
