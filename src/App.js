@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import LoadMoreData from "./components/LoadMoreData/LoadMoreData";
 import KeepPreviousData from "./components/KeepPreviousData/KeepPreviousData";
-import ReactWindow from "./components/ReactWindow/ReactViturlized";
+import ReactViturlized from "./components/ReactViturlized/ReactViturlized";
+import ReactWindow from "./components/ReactWindow/ReactWindow";
 function App() {
   return (
     <div className="App">
@@ -33,7 +34,10 @@ function App() {
             <Route path="/prevData" element={<Layout><KeepPreviousData /></Layout>} />
           </Routes>
           <Routes>
-            <Route path="/reactViturlized" element={<Layout><ReactWindow /></Layout>} />
+            <Route path="/reactViturlized" element={<Layout><ReactViturlized /></Layout>} />
+          </Routes> 
+          <Routes>
+            <Route path="/reactWindow" element={<Layout><ReactWindow /></Layout>} />
           </Routes>
         </Router>
     </div>

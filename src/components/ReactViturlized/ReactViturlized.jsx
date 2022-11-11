@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { faker } from "@faker-js/faker";
-import { List, AutoSizer, CellMeasurer,CellMeasurerCache } from "react-virtualized";
+import {
+  List,
+  AutoSizer,
+  CellMeasurer,
+  CellMeasurerCache,
+} from "react-virtualized";
+import { useMemo } from "react";
 function ReactWindow() {
   const [data, setData] = useState([]);
   const [time, setTime] = useState(1);
@@ -10,9 +16,8 @@ function ReactWindow() {
       defaultHeight: 100,
     })
   );
-
-  useEffect(() => {
-    setData(
+  const arr = useMemo(
+    () =>
       [...Array(1000000).keys()].map((key) => {
         return {
           id: faker.datatype.uuid(),
@@ -21,18 +26,22 @@ function ReactWindow() {
           email: faker.internet.email(),
           avatar: faker.image.avatar(),
         };
-      })
-    );
+      }),
+    [data]
+  );
+  useEffect(() => {
+    setData(arr);
+    console.log(arr);
   }, []);
 
-    useEffect(() => {
-      const timmer = setInterval(() => {
-        setTime((prev) => prev + 1);
-      }, 1000);
-      return () => {
-        clearInterval(timmer);
-      };
-    }, [time]);
+  useEffect(() => {
+    const timmer = setInterval(() => {
+      setTime((prev) => prev + 1);
+    }, 1000);
+    return () => {
+      clearInterval(timmer);
+    };
+  }, [time]);
   return (
     <div>
       <h2>React window</h2>
@@ -67,7 +76,11 @@ function ReactWindow() {
                       cache={cache.current}
                     >
                       <div style={style}>
-                        <img style={{height:"100px",width:"100px"}} src={comment?.avatar} alt="" />
+                        <img
+                          style={{ height: "100px", width: "100px" }}
+                          src={comment?.avatar}
+                          alt=""
+                        />
                         <h2>
                           {index}: {comment?.name}
                         </h2>
