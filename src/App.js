@@ -9,6 +9,8 @@ import LoadMoreData from "./components/LoadMoreData/LoadMoreData";
 import KeepPreviousData from "./components/KeepPreviousData/KeepPreviousData";
 import ReactViturlized from "./components/ReactViturlized/ReactViturlized";
 import ReactWindow from "./components/ReactWindow/ReactWindow";
+import ImageKit from "./components/OptimizeImage/ImageKit";
+import ImageSetSrc from "./components/OptimizeImage/ImageSetSrc";
 function App() {
   return (
     <div className="App">
@@ -38,6 +40,9 @@ function App() {
           </Routes> 
           <Routes>
             <Route path="/reactWindow" element={<Layout><ReactWindow /></Layout>} />
+          </Routes>
+          <Routes>
+            <Route path="/image2" element={<Layout><ImageSetSrc /></Layout>} />
           </Routes>
         </Router>
     </div>

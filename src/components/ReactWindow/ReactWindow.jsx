@@ -15,7 +15,7 @@ function ReactWindow() {
   });
   const arr = useMemo(
     () =>
-      [...Array(1000).keys()].map((key) => {
+      [...Array(100000).keys()].map((key) => {
         console.log("red");
         return {
           id: faker.datatype.uuid(),
